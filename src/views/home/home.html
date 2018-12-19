@@ -1,0 +1,4 @@
+<div ng-controller="homeCtrl as home" ng-render-finish="home.onRenderFinish()">
+    <span ng-bind="home.data.content"></span>
+    <span ng-bind="home.data.time | timeFormat"></span>
+</div>
