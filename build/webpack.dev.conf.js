@@ -1,12 +1,18 @@
 'use strict'
 
-const path = require('path');
 const merge = require('webpack-merge');
+const path = require('path');
 const portfinder = require('portfinder');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const baseWebpackConfig = require('./webpack.base.conf');
 const packageConfig = require('../package.json')
+
+const resolve = function (dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 const createNotifierCallback = () => {
   const notifier = require('node-notifier');
@@ -27,6 +33,22 @@ const createNotifierCallback = () => {
 }
 
 const devWebpackConfig = merge(baseWebpackConfig, {
+  //  输出
+  output: {
+    filename: '[name].js',
+    publicPath: '/',
+    path: resolve('/')
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
+  ],
   devServer: {
     clientLogLevel: 'none',
     hot: true,

@@ -1,6 +1,7 @@
 import languageConfig from '@/config/languageConfig';
 import routerConfig from '@/config/routerConfig';
 import lazyLoad from '@/utils/lazyLoad/index';
+import {importFile} from '@/utils/index';
 
 /**
  * App 配置
@@ -22,7 +23,7 @@ export default (app) => {
         $stateProvider.state(
           element.state, {
             url: element.url,
-            templateUrl: 'src/' + element.templateUrl,
+            template: importFile(element.templateUrl),
             params: element.params || {},
             resolve: {
               deps: lazyLoad(element)
@@ -35,7 +36,7 @@ export default (app) => {
       $stateProvider.state(
         '404', {
           url: '404',
-          templateUrl: 'src/views/error/404.html'
+          template: importFile('views/error/404.html')
         }
       );
 

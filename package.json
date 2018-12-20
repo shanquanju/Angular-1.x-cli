@@ -39,6 +39,7 @@
     "mockjs": "^1.0.1-beta3",
     "node-notifier": "^5.3.0",
     "node-sass": "^4.10.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "path": "^0.12.7",
     "portfinder": "^1.0.20",
     "postcss-import": "^12.0.1",

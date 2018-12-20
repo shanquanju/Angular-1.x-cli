@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const resolve = function (dir) {
@@ -13,12 +12,6 @@ module.exports = {
   //  入口
   entry: {
     app: ['babel-polyfill', './src/app.js']
-  },
-  //  输出
-  output: {
-    filename: '[name].js',
-    publicPath: '/dist/',
-    path: resolve('dist')
   },
   //  加载器
   module: {
@@ -91,10 +84,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "style.css"
-    })
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };
